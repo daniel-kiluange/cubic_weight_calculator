@@ -11,17 +11,17 @@ trait Cubing{
     fn pack_weight(&self) -> f32;
 }
 
-struct Package{
+struct Parcel{
     weight: f32,
     height: f32,
     width: f32,
-    depth: f32,
+    lenght: f32,
     quantity: u16,
 }
 
-impl Cubing for Package{
+impl Cubing for Parcel{
     fn volume(&self) -> f32 { 
-        self.quantity as f32 * (self.width * self.height * self.depth)
+        self.quantity as f32 * (self.width * self.height * self.lenght)
     }
 
     fn cubic_weight(&self) -> f32 {
@@ -33,15 +33,15 @@ impl Cubing for Package{
     }
 }
 
-fn real_weight(list:&Vec<Package>) -> f32 {
+fn real_weight(list:&Vec<Parcel>) -> f32 {
     list.iter()
-    .map(Package::pack_weight)
+    .map(Parcel::pack_weight)
     .reduce(|a,b| a + b).unwrap()
 }
 
-fn cubic_weight(list:&Vec<Package>) -> f32 {
+fn cubic_weight(list:&Vec<Parcel>) -> f32 {
     list.iter()
-    .map(Package::cubic_weight)
+    .map(Parcel::cubic_weight)
     .reduce(|a,b|a+ b).unwrap()
 }
 
@@ -49,7 +49,7 @@ fn main() {
 
     dotenv().ok();
 
-    let x = vec![Package{weight:266.67, height:1.2, width:1.2, depth:1.5, quantity:3}, Package{weight:1000.0, height:2.0, width:1.5, depth:0.8, quantity:1}];
+    let x = vec![Parcel{weight:266.67, height:1.2, width:1.2, lenght:1.5, quantity:3}, Parcel{weight:1000.0, height:2.0, width:1.5, lenght:0.8, quantity:1}];
 
     let rw = real_weight(&x);
 
