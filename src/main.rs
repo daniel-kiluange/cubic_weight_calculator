@@ -3,13 +3,11 @@ extern crate dotenv;
 #[macro_use]
 extern crate dotenv_codegen;
 
-use dotenv::dotenv;
+mod cubing;
 
-trait Cubing{
-    fn volume(&self) -> f32;
-    fn cubic_weight(&self) -> f32;
-    fn pack_weight(&self) -> f32;
-}
+use dotenv::dotenv;
+use cubing::Cubing;
+
 
 struct Parcel{
     weight: f32,
